@@ -1,0 +1,59 @@
+{{ define "main" }}
+
+<div class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-slate-800">{{ .Title }}</h1>
+    </div>
+</div>
+
+<section class="max-w-4xl mx-auto py-16 px-6">
+    <h2 class="text-3xl md:text-4xl font-bold mb-8 text-slate-800">Vision</h2>
+    <div class="space-y-6 text-lg leading-relaxed text-gray-800">
+        <p>
+            私たちは、テクノロジーによる効率化で医療現場を支援することを目指しています。
+        </p>
+        <p>
+            これほどまでにIT技術が発展しているにもかかわらず、医療業界がその恩恵を十分に受けているとは言い難いのが現状です。
+            紙やFAXでのやりとり、煩雑な手作業、非効率なワークフローなど、テクノロジーで解決できる課題が数多く残されています。
+        </p>
+        <p>
+            私たちは医療現場を知る者として、現場の声に耳を傾け、真に使いやすく業務に最適化されたソリューションを提供します。
+            形だけのDXではなく、本質的な効率化を実現します。
+        </p>
+        <p>
+            その実現のために、AI技術を含めた最新の技術を積極的に活用していきます。
+        </p>
+    </div>
+</section>
+
+<section class="w-full max-w-4xl mx-auto py-16 px-6">
+    <h2 class="text-3xl md:text-4xl font-bold mb-8 text-slate-800">会社概要</h2>
+
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 w-full">
+        <table class="w-full table-fixed">
+            <tbody class="divide-y divide-gray-200">
+                <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900 bg-gray-50">会社名</td>
+                    <td class="px-6 py-4 text-gray-700">株式会社テクノプラズム</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900 bg-gray-50">設立日</td>
+                    <td class="px-6 py-4 text-gray-700">2025年9月</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900 bg-gray-50">所在地</td>
+                    <td class="px-6 py-4 text-gray-700">北海道札幌市中央区南5条西15丁目2</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900 bg-gray-50 whitespace-nowrap w-40">代表取締役</td>
+                    <td class="px-6 py-4 text-gray-700">遠田 建</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900 bg-gray-50">メール</td>
+                    <td class="px-6 py-4 text-gray-700"><a href="mailto:info@technoplasm.jp" class="text-slate-800 hover:text-slate-600 transition">info@technoplasm.jp</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+{{ end }}

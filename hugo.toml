@@ -1,0 +1,7 @@
+baseURL = 'https://technoplasm.jp/'
+languageCode = 'ja'
+title = '株式会社テクノプラズム'
+
+[permalinks]
+  blog = '/blog/:year-:month-:day-:slug/'
+  news = '/news/:year-:month-:day-:slug/'

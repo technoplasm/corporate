@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    {{ $css := resources.Get "css/main.css" | css.PostCSS }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .font-public-sans {
+            font-family: 'Public Sans', sans-serif;
+        }
+
+        @keyframes stencil-shine {
+            0% {
+                background-position: -200% -200%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 300% 300%;
+            }
+        }
+
+        @keyframes stencil-pulse {
+            0%, 100% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.2);
+            }
+        }
+
+        .text-stencil {
+            background: #64748b;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        body {
+            transition: background-color 1.5s ease;
+        }
+
+        body:has(.hero-container:hover) {
+            background-color: #f8fafc;
+        }
+
+        .hero-container:hover .text-stencil {
+            background:
+                linear-gradient(
+                    135deg,
+                    #334155 0%,
+                    #475569 15%,
+                    #64748b 25%,
+                    #94a3b8 35%,
+                    #cbd5e1 42%,
+                    #f1f5f9 50%,
+                    #cbd5e1 58%,
+                    #94a3b8 65%,
+                    #64748b 75%,
+                    #475569 85%,
+                    #334155 100%
+                ),
+                linear-gradient(
+                    45deg,
+                    transparent 0%,
+                    transparent 40%,
+                    rgba(241, 245, 249, 0.3) 48%,
+                    rgba(241, 245, 249, 0.5) 50%,
+                    rgba(241, 245, 249, 0.3) 52%,
+                    transparent 60%,
+                    transparent 100%
+                );
+            background-size: 300% 300%, 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation: stencil-shine 4s ease-in-out infinite, stencil-pulse 2s ease-in-out infinite;
+        }
+    </style>
+    {{ block "head" . }}{{ end }}
+</head>
+<body class="bg-white text-gray-900 flex flex-col min-h-screen">
+    {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
+    <main class="flex-grow flex flex-col">
+        {{ block "main" . }}{{ end }}
+    </main>
+    {{ block "footer" . }}{{ partial "footer.html" . }}{{ end }}
+</body>
+</html>
