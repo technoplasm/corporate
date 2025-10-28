@@ -21,22 +21,10 @@
 
         @keyframes stencil-shine {
             0% {
-                background-position: -200% -200%;
-            }
-            50% {
-                background-position: 100% 100%;
+                background-position: -200% 0;
             }
             100% {
-                background-position: 300% 300%;
-            }
-        }
-
-        @keyframes stencil-pulse {
-            0%, 100% {
-                filter: brightness(1);
-            }
-            50% {
-                filter: brightness(1.2);
+                background-position: 200% 0;
             }
         }
 
@@ -48,44 +36,17 @@
             text-decoration: none;
         }
 
-        body {
-            transition: background-color 1.5s ease;
-        }
-
-        body:has(.hero-container:hover) {
-            background-color: #f8fafc;
-        }
-
         .hero-container:hover .text-stencil {
-            background:
-                linear-gradient(
-                    135deg,
-                    #334155 0%,
-                    #475569 15%,
-                    #64748b 25%,
-                    #94a3b8 35%,
-                    #cbd5e1 42%,
-                    #f1f5f9 50%,
-                    #cbd5e1 58%,
-                    #94a3b8 65%,
-                    #64748b 75%,
-                    #475569 85%,
-                    #334155 100%
-                ),
-                linear-gradient(
-                    45deg,
-                    transparent 0%,
-                    transparent 40%,
-                    rgba(241, 245, 249, 0.3) 48%,
-                    rgba(241, 245, 249, 0.5) 50%,
-                    rgba(241, 245, 249, 0.3) 52%,
-                    transparent 60%,
-                    transparent 100%
-                );
-            background-size: 300% 300%, 200% 200%;
+            background: linear-gradient(
+                110deg,
+                #64748b 40%,
+                #f1f5f9 50%,
+                #64748b 60%
+            );
+            background-size: 200% 100%;
             background-clip: text;
             -webkit-background-clip: text;
-            animation: stencil-shine 4s ease-in-out infinite, stencil-pulse 2s ease-in-out infinite;
+            animation: stencil-shine 2s ease-in-out infinite;
         }
     </style>
     {{ block "head" . }}{{ end }}
