@@ -5,3 +5,8 @@ title = '株式会社テクノプラズム'
 [permalinks]
   blog = '/blog/:year-:month-:day-:slug/'
   news = '/news/:year-:month-:day-:slug/'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
