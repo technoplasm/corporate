@@ -2,6 +2,9 @@ baseURL = 'https://technoplasm.jp/'
 languageCode = 'ja'
 title = '株式会社テクノプラズム'
 
+[params]
+  description = 'テクノロジーで医療現場を支援する株式会社テクノプラズムのウェブサイトです'
+
 [permalinks]
   blog = '/blog/:year-:month-:day-:slug/'
   news = '/news/:year-:month-:day-:slug/'
