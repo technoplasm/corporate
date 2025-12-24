@@ -1,7 +1,68 @@
 {{ define "main" }}
-<div class="flex-grow flex flex-col">
-    <div class="flex-grow flex flex-col justify-center items-center text-center px-6">
-        <div class="hero-container">
+<style>
+    .gradient-overlay {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.2;
+        animation: gradientShift 30s ease-in-out infinite;
+    }
+    @keyframes gradientShift {
+        0%, 100% { background: linear-gradient(135deg, #a090c0 0%, #c0a0b0 100%); }
+        33% { background: linear-gradient(135deg, #c0a0b0 0%, #90a0c0 100%); }
+        66% { background: linear-gradient(135deg, #90a0c0 0%, #a090c0 100%); }
+    }
+    .particles {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+    }
+    .particle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.4;
+        animation: float 120s linear infinite;
+        transform-origin: 50vw 50vh;
+    }
+    @keyframes float {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+<div class="gradient-overlay"></div>
+<div class="flex-grow flex flex-col relative z-10">
+    <div class="flex-grow flex flex-col justify-center items-center text-center px-6 relative">
+        <div class="particles" id="particles"></div>
+        <script>
+            (function() {
+                const container = document.getElementById('particles');
+                const colors = {
+                    h: ['#7c6cae', '#8b7cb8', '#6a5a9e', '#9b8bc8', '#5d4d8e'],
+                    e: ['#e8a0b0', '#f0b0c0', '#dca0b0', '#f5c0d0', '#d890a0']
+                };
+                const count = 20;
+                for (let i = 0; i < count; i++) {
+                    const el = document.createElement('div');
+                    el.className = 'particle';
+                    const isH = Math.random() > 0.5;
+                    const colorArr = isH ? colors.h : colors.e;
+                    const color = colorArr[Math.floor(Math.random() * colorArr.length)];
+                    const size = 60 + Math.random() * 150;
+                    el.style.width = size + 'px';
+                    el.style.height = size + 'px';
+                    el.style.left = Math.random() * 100 + '%';
+                    el.style.top = Math.random() * 100 + '%';
+                    el.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
+                    el.style.animationDelay = -Math.random() * 120 + 's';
+                    el.style.animationDirection = Math.random() > 0.5 ? 'normal' : 'reverse';
+                    container.appendChild(el);
+                }
+            })();
+        </script>
+        <div class="hero-container relative z-10" id="heroContainer">
             <h1 class="font-public-sans font-bold text-4xl sm:text-6xl md:text-8xl mb-8 tracking-tight">
                 <a href="/" class="text-stencil">Technoplasm</a>
             </h1>
@@ -12,7 +73,7 @@
     </div>
 
     <!-- News Section -->
-    <section class="py-16 px-6 bg-gray-50">
+    <section class="py-16 px-6">
         <div class="max-w-4xl mx-auto">
             <div class="flex items-center justify-between mb-8">
                 <h2 class="text-2xl font-bold text-slate-800">お知らせ</h2>
