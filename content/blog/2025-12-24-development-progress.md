@@ -3,7 +3,7 @@ title: "開発の進捗についてご報告"
 date: 2025-12-24
 author: "遠田"
 slug: "development-progress"
-description: "病理診断報告システムの開発進捗をローソク足チャートで紹介。8万行を超えるシステムの開発記録。"
+description: "8万行超えの病理診断報告システムの開発進捗をローソク足チャートで紹介"
 image: "/blog/2025-12-24-development-progress/ogp.png"
 draft: false
 ---
