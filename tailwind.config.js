@@ -4,6 +4,9 @@ module.exports = {
     './content/**/*.{html,md}',
     './layouts/**/*.html',
   ],
+  safelist: process.env.NODE_ENV === 'development' ? [
+    { pattern: /^(w|h|p)-/ },
+  ] : [],
   theme: {
     extend: {},
   },

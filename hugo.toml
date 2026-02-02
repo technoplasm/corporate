@@ -6,8 +6,8 @@ title = '株式会社テクノプラズム'
   description = 'テクノロジーで医療現場を支援する株式会社テクノプラズムのウェブサイトです'
 
 [permalinks]
-  blog = '/blog/:year-:month-:day-:slug/'
-  news = '/news/:year-:month-:day-:slug/'
+  blog = '/blog/:contentbasename/'
+  news = '/news/:contentbasename/'
 
 [markup]
   [markup.goldmark]

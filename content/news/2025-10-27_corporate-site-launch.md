@@ -7,4 +7,4 @@ draft: false
 
 株式会社テクノプラズムのコーポレートサイトを開設しました。
 
-詳細は[ブログ](/blog/2025-10-27-corporate-site-launch/)をご覧ください。
+詳細は[ブログ](/blog/2025-10-27_corporate-site-launch/)をご覧ください。

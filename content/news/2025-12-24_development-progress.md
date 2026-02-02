@@ -7,4 +7,4 @@ draft: false
 
 開発の進捗についてご報告いたします。
 
-詳細は[ブログ](/blog/2025-12-24-development-progress/)をご覧ください。
+詳細は[ブログ](/blog/2025-12-24_development-progress/)をご覧ください。

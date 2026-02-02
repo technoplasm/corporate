@@ -4,7 +4,7 @@ date: 2025-12-24
 author: "遠田"
 slug: "development-progress"
 description: "8万行超えの病理診断報告システムの開発進捗をローソク足チャートで紹介"
-image: "/blog/2025-12-24-development-progress/ogp.png"
+image: "/blog/2025-12-24_development-progress/ogp.png"
 draft: false
 ---
 
@@ -57,7 +57,7 @@ draft: false
 かねてからコミットの増減は株価の推移みたいだなと思っていたので、ローソク足チャート風のプロットを作ってみました（Claude Codeに作らせました）。決まった要件とざっくりした仕様さえ与えれば、ものの5分くらいで出来てしまうのは恐ろしいですね。
 
 <iframe
-  src="/blog/2025-12-24-development-progress/chart.html"
+  src="/blog/2025-12-24_development-progress/chart.html"
   width="100%"
   height="600"
   frameborder="0"
