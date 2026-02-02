@@ -24,7 +24,7 @@
         position: absolute;
         border-radius: 50%;
         opacity: 0.4;
-        animation: float 120s linear infinite;
+        animation: float var(--particle-duration, 120s) linear infinite;
         transform-origin: 50vw 50vh;
     }
     @keyframes float {
@@ -39,11 +39,28 @@
         <script>
             (function() {
                 const container = document.getElementById('particles');
+                const baseSize = 1920 * 1080;
+
+                // 画面サイズに応じてアニメーション速度を計算
+                function calcDuration() {
+                    const currentSize = window.innerWidth * window.innerHeight;
+                    const ratio = Math.sqrt(currentSize / baseSize);
+                    return Math.max(20, Math.min(80, 80 * ratio));
+                }
+
+                function updateParticleDuration() {
+                    const duration = calcDuration();
+                    document.documentElement.style.setProperty('--particle-duration', duration + 's');
+                }
+                updateParticleDuration();
+                window.addEventListener('resize', updateParticleDuration);
+
                 const colors = {
                     h: ['#7c6cae', '#8b7cb8', '#6a5a9e', '#9b8bc8', '#5d4d8e'],
                     e: ['#e8a0b0', '#f0b0c0', '#dca0b0', '#f5c0d0', '#d890a0']
                 };
                 const count = 20;
+                const initialDuration = calcDuration();
                 for (let i = 0; i < count; i++) {
                     const el = document.createElement('div');
                     el.className = 'particle';
@@ -56,7 +73,7 @@
                     el.style.left = Math.random() * 100 + '%';
                     el.style.top = Math.random() * 100 + '%';
                     el.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
-                    el.style.animationDelay = -Math.random() * 120 + 's';
+                    el.style.animationDelay = -Math.random() * initialDuration + 's';
                     el.style.animationDirection = Math.random() > 0.5 ? 'normal' : 'reverse';
                     container.appendChild(el);
                 }
