@@ -2,6 +2,7 @@
 title: "北大発認定スタートアップ企業に認定されました"
 date: 2026-02-02
 slug: "hokudai-startup"
+blog: "/blog/2026-02-02_hokudai-startup/"
 draft: false
 ---
 

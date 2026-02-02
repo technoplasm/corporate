@@ -82,10 +82,12 @@
             <div class="bg-white rounded border border-gray-200 overflow-hidden">
                 <div class="max-h-[11rem] overflow-y-auto divide-y divide-gray-100">
                     {{ range first 5 (where .Site.RegularPages "Section" "news") }}
-                    <a href="/news/#{{ .Params.slug }}" class="flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition">
-                        <time class="text-base text-gray-500 shrink-0 w-32">{{ .Date.Format "2006年1月2日" }}</time>
-                        <h3 class="text-base text-slate-800">{{ .Title }}</h3>
-                    </a>
+                    <div class="flex items-center px-4 py-3">
+                        <time class="text-base text-gray-500 shrink-0 w-36">{{ .Date.Format "2006年1月2日" }}</time>
+                        <p class="text-base text-slate-800">{{ .Title }}
+                            {{ with .Params.blog }}　<a href="{{ . }}" class="text-sm text-blue-600 hover:text-blue-800">ブログ記事</a>{{ end }}
+                        </p>
+                    </div>
                     {{ end }}
                 </div>
             </div>

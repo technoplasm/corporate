@@ -2,6 +2,7 @@
 title: "コーポレートサイトを開設しました"
 date: 2025-10-27
 slug: "corporate-site-launch"
+blog: "/blog/2025-10-27_corporate-site-launch/"
 draft: false
 ---
 

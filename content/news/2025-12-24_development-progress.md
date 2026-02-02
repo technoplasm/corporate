@@ -2,6 +2,7 @@
 title: "ブログを更新しました"
 date: 2025-12-24
 slug: "2025-12-24-development-progress"
+blog: "/blog/2025-12-24_development-progress/"
 draft: false
 ---
 
