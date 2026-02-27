@@ -13,6 +13,9 @@ draft: false
 
 北大発認定スタートアップ企業への称号付与制度は、北海道大学のスタートアップ・エコシステムの一員として、北大と共に成長していく企業を対象としています。
 
+<img src="/images/hus_logo_color_2.png" alt="北大発認定スタートアップ企業" class="w-64">
+
+
 認定企業は、北海道大学 産学・地域協働推進機構のWebページにて紹介されます。
 
 - [北海道大学 産学・地域協働推進機構 認定スタートアップ一覧](https://www.mcip.hokudai.ac.jp/business/venture/su_company/)
