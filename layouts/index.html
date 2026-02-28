@@ -145,6 +145,10 @@
                     'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExajBxOWE4NWI3YnllaDlrNGF1YzdqdzN4ZnB1N2htMGV2bWowcGdkNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/epRJD2s3WklPvxe5kM/giphy.gif)', // ゴールドラッシュ
                     'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTBpMjhhbDlwMG15Zmd5Y2p4cXY0N3k1MzNra25xdTB1eXNzcXN5cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HlszHDwXM6r0mGlByr/giphy.gif)', // サイケデリック
                 ];
+                gifs.forEach(function(g) {
+                    var img = new Image();
+                    img.src = g.replace(/^url\(["']?|["']?\)$/g, '');
+                });
                 var positions = ['center 20%', 'center 50%', 'center 80%'];
                 var idx = Math.floor(Math.random() * gifs.length);
                 var els = document.querySelectorAll('.gif-text');
