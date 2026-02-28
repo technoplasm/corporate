@@ -1,19 +1,19 @@
-<header class="bg-white border-b border-gray-200">
+<header class="bg-transparent border-b border-white/10">
     <nav class="max-w-7xl mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
-            <a href="/" class="font-public-sans font-bold text-2xl text-slate-800">Technoplasm</a>
+            <a href="/" class="font-public-sans font-bold text-2xl text-gray-100">Technoplasm</a>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex gap-8">
-                <a href="/" class="{{ if eq .RelPermalink "/" }}text-slate-800 font-medium{{ else }}text-gray-700 hover:text-slate-800{{ end }} transition">ホーム</a>
-                <a href="/business/" class="{{ if eq .Section "business" }}text-slate-800 font-medium{{ else }}text-gray-700 hover:text-slate-800{{ end }} transition">事業内容</a>
-                <!-- <a href="/news/" class="{{ if eq .Section "news" }}text-slate-800 font-medium{{ else }}text-gray-700 hover:text-slate-800{{ end }} transition">お知らせ</a> -->
-                <a href="/blog/" class="{{ if eq .Section "blog" }}text-slate-800 font-medium{{ else }}text-gray-700 hover:text-slate-800{{ end }} transition">ブログ</a>
-                <a href="/company/" class="{{ if eq .Section "company" }}text-slate-800 font-medium{{ else }}text-gray-700 hover:text-slate-800{{ end }} transition">会社概要</a>
+                <a href="/" class="{{ if eq .RelPermalink "/" }}text-white font-medium{{ else }}text-gray-400 hover:text-white{{ end }} transition">ホーム</a>
+                <a href="/business/" class="{{ if eq .Section "business" }}text-white font-medium{{ else }}text-gray-400 hover:text-white{{ end }} transition">事業内容</a>
+                <!-- <a href="/news/" class="{{ if eq .Section "news" }}text-white font-medium{{ else }}text-gray-400 hover:text-white{{ end }} transition">お知らせ</a> -->
+                <a href="/blog/" class="{{ if eq .Section "blog" }}text-white font-medium{{ else }}text-gray-400 hover:text-white{{ end }} transition">ブログ</a>
+                <a href="/company/" class="{{ if eq .Section "company" }}text-white font-medium{{ else }}text-gray-400 hover:text-white{{ end }} transition">会社概要</a>
             </div>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-slate-800" aria-label="メニューを開く">
+            <button id="mobile-menu-button" class="md:hidden text-gray-100" aria-label="メニューを開く">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
@@ -22,11 +22,11 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-4">
-            <a href="/" class="block {{ if eq .RelPermalink "/" }}text-slate-800 font-medium{{ else }}text-gray-700 hover:text-slate-800{{ end }} transition">ホーム</a>
-            <a href="/business/" class="block {{ if eq .Section "business" }}text-slate-800 font-medium{{ else }}text-gray-700 hover:text-slate-800{{ end }} transition">事業内容</a>
-            <!-- <a href="/news/" class="block {{ if eq .Section "news" }}text-slate-800 font-medium{{ else }}text-gray-700 hover:text-slate-800{{ end }} transition">お知らせ</a> -->
-            <a href="/blog/" class="block {{ if eq .Section "blog" }}text-slate-800 font-medium{{ else }}text-gray-700 hover:text-slate-800{{ end }} transition">ブログ</a>
-            <a href="/company/" class="block {{ if eq .Section "company" }}text-slate-800 font-medium{{ else }}text-gray-700 hover:text-slate-800{{ end }} transition">会社概要</a>
+            <a href="/" class="block {{ if eq .RelPermalink "/" }}text-white font-medium{{ else }}text-gray-400 hover:text-white{{ end }} transition">ホーム</a>
+            <a href="/business/" class="block {{ if eq .Section "business" }}text-white font-medium{{ else }}text-gray-400 hover:text-white{{ end }} transition">事業内容</a>
+            <!-- <a href="/news/" class="block {{ if eq .Section "news" }}text-white font-medium{{ else }}text-gray-400 hover:text-white{{ end }} transition">お知らせ</a> -->
+            <a href="/blog/" class="block {{ if eq .Section "blog" }}text-white font-medium{{ else }}text-gray-400 hover:text-white{{ end }} transition">ブログ</a>
+            <a href="/company/" class="block {{ if eq .Section "company" }}text-white font-medium{{ else }}text-gray-400 hover:text-white{{ end }} transition">会社概要</a>
         </div>
     </nav>
 </header>

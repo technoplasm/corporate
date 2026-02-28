@@ -1,11 +1,13 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
-{{ .Content }}
-<ul>
-{{ range .Pages }}
-    <li>
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </li>
-{{ end }}
-</ul>
+<div class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-4xl md:text-5xl font-bold mb-8 text-gray-100">{{ .Title }}</h1>
+    {{ .Content }}
+    <ul class="space-y-3">
+    {{ range .Pages }}
+        <li>
+            <a href="{{ .RelPermalink }}" class="text-blue-400 hover:text-blue-300 transition">{{ .Title }}</a>
+        </li>
+    {{ end }}
+    </ul>
+</div>
 {{ end }}

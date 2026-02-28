@@ -1,13 +1,13 @@
 {{ define "main" }}
 
-<div class="py-16 bg-gray-50">
+<div class="py-16 bg-white/5">
     <div class="max-w-4xl mx-auto px-6">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-800">{{ .Title }}</h1>
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-100">{{ .Title }}</h1>
     </div>
 </div>
 
 <section class="max-w-4xl mx-auto py-16 px-6">
-    <div class="prose prose-lg max-w-none">
+    <div class="prose prose-lg prose-invert max-w-none">
         {{ .Content }}
     </div>
 </section>
