@@ -20,11 +20,13 @@
     <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
     <meta name="twitter:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ with .Summary }}{{ . | plainify | truncate 120 }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
     {{ with .Params.image }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
+    {{ with (templates.Defer (dict "key" "global")) }}
     {{ $css := resources.Get "css/main.css" | css.PostCSS }}
     {{ if hugo.IsProduction }}
         {{ $css = $css | fingerprint }}
     {{ end }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+    {{ end }}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -36,34 +38,12 @@
             font-family: 'Public Sans', sans-serif;
         }
 
-        @keyframes stencil-shine {
-            0% {
-                background-position: -200% 0;
-            }
-            100% {
-                background-position: 200% 0;
-            }
-        }
-
         .text-stencil {
             background: #64748b;
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
-        }
-
-        .hero-container:hover .text-stencil {
-            background: linear-gradient(
-                110deg,
-                #64748b 40%,
-                #f1f5f9 50%,
-                #64748b 60%
-            );
-            background-size: 200% 100%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            animation: stencil-shine 2s ease-in-out infinite;
         }
     </style>
     {{ block "head" . }}{{ end }}

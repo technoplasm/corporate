@@ -1,3 +1,36 @@
+{{ define "head" }}
+<style>
+    body {
+        background-color: #000 !important;
+    }
+
+    header {
+        background-color: transparent !important;
+        border-bottom-color: rgba(255,255,255,0.1) !important;
+    }
+    header a, header button {
+        color: #ccc !important;
+    }
+
+    footer {
+        background-color: #000 !important;
+    }
+
+    .gif-text {
+        background-image: url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTlueXllMmF0YzYxMjY5aHY1b3JpNHJ3NmZpZWgxcnliaTVmbHZtbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/h6IEWL7c19SS6Yn1FM/giphy.gif);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        text-decoration: none;
+    }
+</style>
+{{ end }}
+
 {{ define "main" }}
 <style>
     .gradient-overlay {
@@ -5,7 +38,7 @@
         inset: 0;
         pointer-events: none;
         z-index: 0;
-        opacity: 0.2;
+        opacity: 0.15;
         animation: gradientShift 30s ease-in-out infinite;
     }
     @keyframes gradientShift {
@@ -23,7 +56,7 @@
     .particle {
         position: absolute;
         border-radius: 50%;
-        opacity: 0.4;
+        opacity: 0.3;
         animation: float var(--particle-duration, 120s) linear infinite;
         transform-origin: 50vw 50vh;
     }
@@ -41,7 +74,6 @@
                 const container = document.getElementById('particles');
                 const baseSize = 1920 * 1080;
 
-                // 画面サイズに応じてアニメーション速度を計算
                 function calcDuration() {
                     const currentSize = window.innerWidth * window.innerHeight;
                     const ratio = Math.sqrt(currentSize / baseSize);
@@ -79,30 +111,48 @@
                 }
             })();
         </script>
-        <div class="hero-container relative z-10" id="heroContainer">
-            <h1 class="font-public-sans font-bold text-4xl sm:text-6xl md:text-8xl mb-8 tracking-tight">
-                <a href="/" class="text-stencil">Technoplasm</a>
+        <div class="relative z-10">
+            <h1 class="font-public-sans font-bold text-6xl sm:text-8xl md:text-[120px] mb-4 tracking-tight leading-tight gif-text">
+                Technoplasm
             </h1>
-            <p class="text-xl sm:text-2xl md:text-3xl font-medium">
-                <span class="text-gray-900">その身体は</span><span class="text-stencil">テクノロジー</span><span class="text-gray-900">で出来ている</span>
+            <p class="text-xl sm:text-2xl md:text-3xl font-medium leading-loose">
+                <span class="text-white">その身体は</span><span class="gif-text text-2xl sm:text-3xl md:text-4xl">テクノロジー</span><span class="text-white">で出来ている</span>
             </p>
         </div>
+        <script>
+            (function() {
+                var gifs = [
+                    'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTlueXllMmF0YzYxMjY5aHY1b3JpNHJ3NmZpZWgxcnliaTVmbHZtbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/h6IEWL7c19SS6Yn1FM/giphy.gif)',
+                    'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGliYmcxOWltOHRuZmR2aXdyd3Rsc2V0b3h6aThjMTIzbGU5MmRobCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RinDK3M9VVPclvxfKo/giphy.gif)',
+                    'url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDM2YmR6aHFqMTF1ZnFiYTUwN2k2MjN3ajA5azdlMzM2eWtycHM3biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/59UXwJA1Wq6ZWgmgAi/giphy.gif)',
+                    'url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXM5eGNxYTVuZWZpaDVwaGk4ZTg4ejR6MzJmamVqdW5xdHE4bWZ5ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GIY4FhXDnT49CamnRn/giphy.gif)',
+                    'url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmNlMTBpZzU2MHl6NWIyZ2M1YnN1bGg1ZTJ5eXdqeGFzZmxrOGl2ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0IyhNlpfmQtjkuDC/giphy.gif)'
+                ];
+                var idx = Math.floor(Math.random() * gifs.length);
+                var els = document.querySelectorAll('.gif-text');
+                for (var i = 0; i < els.length; i++) {
+                    els[i].style.backgroundImage = gifs[idx];
+                }
+                setInterval(function() {
+                    idx = (idx + 1) % gifs.length;
+                    for (var i = 0; i < els.length; i++) {
+                        els[i].style.backgroundImage = gifs[idx];
+                    }
+                }, 10000);
+            })();
+        </script>
     </div>
 
     <!-- News Section -->
-    <section class="py-16 px-6">
+    <section class="py-6 px-6">
         <div class="max-w-4xl mx-auto">
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="text-2xl font-bold text-slate-800">お知らせ</h2>
-                <!-- <a href="/news/" class="text-sm text-slate-600 hover:text-slate-800 transition">すべて見る →</a> -->
-            </div>
-            <div class="bg-white rounded border border-gray-200 overflow-hidden">
-                <div class="max-h-[11rem] overflow-y-auto divide-y divide-gray-100">
+            <div class="rounded border border-white/20 overflow-hidden bg-white/10">
+                <div class="max-h-[11rem] overflow-y-auto divide-y divide-white/10">
                     {{ range first 5 (where .Site.RegularPages "Section" "news") }}
                     <div class="flex items-center px-4 py-3">
-                        <time class="text-base text-gray-500 shrink-0 w-36">{{ .Date.Format "2006年1月2日" }}</time>
-                        <p class="text-base text-slate-800">{{ .Title }}
-                            {{ with .Params.blog }}　<a href="{{ . }}" class="text-sm text-blue-600 hover:text-blue-800">ブログ記事</a>{{ end }}
+                        <time class="text-base shrink-0 w-36 text-neutral-400">{{ .Date.Format "2006年1月2日" }}</time>
+                        <p class="text-base text-neutral-100">{{ .Title }}
+                            {{ with .Params.blog }}　<a href="{{ . }}" class="text-sm text-blue-400 hover:text-blue-300">ブログ記事</a>{{ end }}
                         </p>
                     </div>
                     {{ end }}
