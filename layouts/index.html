@@ -56,13 +56,18 @@
     .particle {
         position: absolute;
         border-radius: 50%;
-        opacity: 0.3;
-        animation: float var(--particle-duration, 120s) linear infinite;
+        animation:
+            float var(--particle-duration, 120s) linear infinite,
+            pulse var(--pulse-duration, 8s) ease-in-out infinite;
         transform-origin: 50vw 50vh;
     }
     @keyframes float {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
+    }
+    @keyframes pulse {
+        0%, 100% { opacity: 0.15; scale: 0.9; }
+        50% { opacity: 0.4; scale: 1.1; }
     }
 </style>
 <div class="gradient-overlay"></div>
@@ -91,7 +96,7 @@
                     h: ['#7c6cae', '#8b7cb8', '#6a5a9e', '#9b8bc8', '#5d4d8e'],
                     e: ['#e8a0b0', '#f0b0c0', '#dca0b0', '#f5c0d0', '#d890a0']
                 };
-                const count = 20;
+                const count = 35;
                 const initialDuration = calcDuration();
                 for (let i = 0; i < count; i++) {
                     const el = document.createElement('div');
@@ -102,10 +107,11 @@
                     const size = 60 + Math.random() * 150;
                     el.style.width = size + 'px';
                     el.style.height = size + 'px';
-                    el.style.left = Math.random() * 100 + '%';
-                    el.style.top = Math.random() * 100 + '%';
+                    el.style.left = (20 + Math.random() * 60) + '%';
+                    el.style.top = (20 + Math.random() * 60) + '%';
                     el.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
-                    el.style.animationDelay = -Math.random() * initialDuration + 's';
+                    el.style.setProperty('--pulse-duration', (5 + Math.random() * 10) + 's');
+                    el.style.animationDelay = -Math.random() * initialDuration + 's, ' + -Math.random() * 15 + 's';
                     el.style.animationDirection = Math.random() > 0.5 ? 'normal' : 'reverse';
                     container.appendChild(el);
                 }
@@ -127,13 +133,14 @@
                     // 'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXJxbWRrdGgyZ3lzd2VoOWg4dXp0dGtubXE2ZG92azNwZXJ3YnpveiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OASauXvaI5dadxxVDC/giphy.gif)',
                     // 'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTl4dTdsYXgwYmVqb3p1eGt5cW0wNTZlcjE4dnc5dzc5NXFmeTEwaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5w6wPYD9xGiqDRcfnm/giphy.gif)',
                     // 'url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTRoM3k1dTltMXBzNGU0eGcwbHN4bnJuZDg1emt4MDduZGo3YXVzayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3mZ7fv3fSzTe6id2/giphy.gif)',
+                    // 'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3lubWlndzNmazB3aTcwYzNkeTc5cDV3YzI4NWVsbXA1cW11eWFyYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohs4nsg2WyigiHYbu/giphy.gif)',
 
-                    'url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGcwMG9sY213OWp4dGtxN2VmZjFmd242NmN3NjY5bWF4czNsb3poYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xUOxeQkDWcfWGiTevu/giphy.gif)',
-                    'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3F6ZDBna2MwYW5vcnVpNTJ2djdqZXR2M25lZjBwNm52Nmw0YXRjdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohs4nsg2WyigiHYbu/giphy.gif)',
-                    'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdG9wYTU4bTVrdWtiY2JvOWg5eWhiczJ1MTc1YTNvM2g0cmhqb3FiZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYzChNIAiu7fT1K/giphy.gif)',
-                    'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTlueXllMmF0YzYxMjY5aHY1b3JpNHJ3NmZpZWgxcnliaTVmbHZtbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/h6IEWL7c19SS6Yn1FM/giphy.gif)',
-                    'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExajBxOWE4NWI3YnllaDlrNGF1YzdqdzN4ZnB1N2htMGV2bWowcGdkNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/epRJD2s3WklPvxe5kM/giphy.gif)',
-                    'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTBpMjhhbDlwMG15Zmd5Y2p4cXY0N3k1MzNra25xdTB1eXNzcXN5cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HlszHDwXM6r0mGlByr/giphy.gif)',
+                    'url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGcwMG9sY213OWp4dGtxN2VmZjFmd242NmN3NjY5bWF4czNsb3poYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xUOxeQkDWcfWGiTevu/giphy.gif)', // 紫系宇宙
+                    'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3F6ZDBna2MwYW5vcnVpNTJ2djdqZXR2M25lZjBwNm52Nmw0YXRjdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohs4nsg2WyigiHYbu/giphy.gif)', // 青紫ゆっくりスモーク
+                    'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdG9wYTU4bTVrdWtiY2JvOWg5eWhiczJ1MTc1YTNvM2g0cmhqb3FiZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYzChNIAiu7fT1K/giphy.gif)', // 青しましま
+                    'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTlueXllMmF0YzYxMjY5aHY1b3JpNHJ3NmZpZWgxcnliaTVmbHZtbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/h6IEWL7c19SS6Yn1FM/giphy.gif)', // 緑水玉
+                    'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExajBxOWE4NWI3YnllaDlrNGF1YzdqdzN4ZnB1N2htMGV2bWowcGdkNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/epRJD2s3WklPvxe5kM/giphy.gif)', // ゴールドラッシュ
+                    'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTBpMjhhbDlwMG15Zmd5Y2p4cXY0N3k1MzNra25xdTB1eXNzcXN5cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HlszHDwXM6r0mGlByr/giphy.gif)', // サイケデリック
                 ];
                 var positions = ['center 20%', 'center 50%', 'center 80%'];
                 var idx = Math.floor(Math.random() * gifs.length);
