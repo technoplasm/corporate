@@ -125,23 +125,40 @@
                     // 'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGliYmcxOWltOHRuZmR2aXdyd3Rsc2V0b3h6aThjMTIzbGU5MmRobCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RinDK3M9VVPclvxfKo/giphy.gif)',
                     // 'url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmNlMTBpZzU2MHl6NWIyZ2M1YnN1bGg1ZTJ5eXdqeGFzZmxrOGl2ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0IyhNlpfmQtjkuDC/giphy.gif)',
                     // 'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXJxbWRrdGgyZ3lzd2VoOWg4dXp0dGtubXE2ZG92azNwZXJ3YnpveiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OASauXvaI5dadxxVDC/giphy.gif)',
+                    // 'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTl4dTdsYXgwYmVqb3p1eGt5cW0wNTZlcjE4dnc5dzc5NXFmeTEwaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5w6wPYD9xGiqDRcfnm/giphy.gif)',
+                    // 'url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTRoM3k1dTltMXBzNGU0eGcwbHN4bnJuZDg1emt4MDduZGo3YXVzayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3mZ7fv3fSzTe6id2/giphy.gif)',
 
-                    'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTl4dTdsYXgwYmVqb3p1eGt5cW0wNTZlcjE4dnc5dzc5NXFmeTEwaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5w6wPYD9xGiqDRcfnm/giphy.gif)',
+                    'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3F6ZDBna2MwYW5vcnVpNTJ2djdqZXR2M25lZjBwNm52Nmw0YXRjdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohs4nsg2WyigiHYbu/giphy.gif)',
+                    'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdG9wYTU4bTVrdWtiY2JvOWg5eWhiczJ1MTc1YTNvM2g0cmhqb3FiZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYzChNIAiu7fT1K/giphy.gif)',
                     'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTlueXllMmF0YzYxMjY5aHY1b3JpNHJ3NmZpZWgxcnliaTVmbHZtbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/h6IEWL7c19SS6Yn1FM/giphy.gif)',
                     'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExajBxOWE4NWI3YnllaDlrNGF1YzdqdzN4ZnB1N2htMGV2bWowcGdkNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/epRJD2s3WklPvxe5kM/giphy.gif)',
                     'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTBpMjhhbDlwMG15Zmd5Y2p4cXY0N3k1MzNra25xdTB1eXNzcXN5cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HlszHDwXM6r0mGlByr/giphy.gif)',
                 ];
+                var positions = ['top', 'center', 'bottom'];
                 var idx = Math.floor(Math.random() * gifs.length);
                 var els = document.querySelectorAll('.gif-text');
-                for (var i = 0; i < els.length; i++) {
-                    els[i].style.backgroundImage = gifs[idx];
-                }
-                setInterval(function() {
-                    idx = (idx + 1) % gifs.length;
+                var timer = setInterval(next, 7000);
+                function applyGif() {
+                    var pos = positions[Math.floor(Math.random() * positions.length)];
                     for (var i = 0; i < els.length; i++) {
                         els[i].style.backgroundImage = gifs[idx];
+                        els[i].style.backgroundPosition = pos;
                     }
-                }, 7000);
+                }
+                function next() {
+                    idx = (idx + 1) % gifs.length;
+                    applyGif();
+                }
+                function clickNext() {
+                    clearInterval(timer);
+                    next();
+                    timer = setInterval(next, 7000);
+                }
+                applyGif();
+                for (var i = 0; i < els.length; i++) {
+                    els[i].style.cursor = 'pointer';
+                    els[i].addEventListener('click', clickNext);
+                }
             })();
         </script>
     </div>
