@@ -20,7 +20,7 @@
         background-image: none; /* JSで動的に書き換え */
         background-size: cover;
         background-position: center;
-        background-attachment: fixed;
+        background-attachment: scroll;
         -webkit-background-clip: text;
         -moz-background-clip: text;
         background-clip: text;
@@ -128,13 +128,14 @@
                     // 'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTl4dTdsYXgwYmVqb3p1eGt5cW0wNTZlcjE4dnc5dzc5NXFmeTEwaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5w6wPYD9xGiqDRcfnm/giphy.gif)',
                     // 'url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTRoM3k1dTltMXBzNGU0eGcwbHN4bnJuZDg1emt4MDduZGo3YXVzayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3mZ7fv3fSzTe6id2/giphy.gif)',
 
+                    'url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGcwMG9sY213OWp4dGtxN2VmZjFmd242NmN3NjY5bWF4czNsb3poYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xUOxeQkDWcfWGiTevu/giphy.gif)',
                     'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3F6ZDBna2MwYW5vcnVpNTJ2djdqZXR2M25lZjBwNm52Nmw0YXRjdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohs4nsg2WyigiHYbu/giphy.gif)',
                     'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdG9wYTU4bTVrdWtiY2JvOWg5eWhiczJ1MTc1YTNvM2g0cmhqb3FiZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYzChNIAiu7fT1K/giphy.gif)',
                     'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTlueXllMmF0YzYxMjY5aHY1b3JpNHJ3NmZpZWgxcnliaTVmbHZtbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/h6IEWL7c19SS6Yn1FM/giphy.gif)',
                     'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExajBxOWE4NWI3YnllaDlrNGF1YzdqdzN4ZnB1N2htMGV2bWowcGdkNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/epRJD2s3WklPvxe5kM/giphy.gif)',
                     'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTBpMjhhbDlwMG15Zmd5Y2p4cXY0N3k1MzNra25xdTB1eXNzcXN5cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HlszHDwXM6r0mGlByr/giphy.gif)',
                 ];
-                var positions = ['top', 'center', 'bottom'];
+                var positions = ['center 20%', 'center 50%', 'center 80%'];
                 var idx = Math.floor(Math.random() * gifs.length);
                 var els = document.querySelectorAll('.gif-text');
                 var timer = setInterval(next, 7000);
