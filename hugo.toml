@@ -41,3 +41,6 @@ title = '株式会社テクノプラズム'
   [[module.mounts]]
     source = 'layouts'
     target = 'layouts'
+  [[module.mounts]]
+    source = 'node_modules/overlayscrollbars/styles'
+    target = 'assets/css/overlayscrollbars'

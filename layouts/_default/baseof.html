@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
+<html lang="{{ .Site.LanguageCode }}" data-theme="{{ if .IsHome }}dark{{ else }}light{{ end }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.9">
@@ -28,6 +28,9 @@
     {{ end }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}">
     {{ end }}
+    {{ $osCSS := resources.Get "css/overlayscrollbars/overlayscrollbars.min.css" }}
+    {{ if hugo.IsProduction }}{{ $osCSS = $osCSS | fingerprint }}{{ end }}
+    <link rel="stylesheet" href="{{ $osCSS.RelPermalink }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -87,8 +90,7 @@
     </style>
     {{ block "head" . }}{{ end }}
 </head>
-<body class="bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-500 flex flex-col min-h-screen"
-      data-theme="{{ if .IsHome }}dark{{ else }}light{{ end }}">
+<body class="bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-500 flex flex-col min-h-screen">
     <div class="gradient-overlay"></div>
     <div class="particles" id="particles"></div>
     <script>

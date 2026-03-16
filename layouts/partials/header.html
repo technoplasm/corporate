@@ -1,4 +1,4 @@
-<header id="site-header" class="bg-white dark:bg-transparent border-b border-gray-200 dark:border-white/10 transition-colors duration-500">
+<header id="site-header" class="relative bg-white dark:bg-transparent border-b border-gray-200 dark:border-white/10 transition-colors duration-500 z-50">
     <nav class="max-w-7xl mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
             <a href="/" class="font-public-sans font-bold text-2xl text-slate-800 dark:text-gray-100">Technoplasm</a>
@@ -21,12 +21,14 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-4">
-            <a href="/" class="block {{ if eq .RelPermalink "/" }}text-slate-800 dark:text-white font-medium{{ else }}text-gray-600 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white{{ end }} transition">ホーム</a>
-            <a href="/business/" class="block {{ if eq .Section "business" }}text-slate-800 dark:text-white font-medium{{ else }}text-gray-600 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white{{ end }} transition">事業内容</a>
-            <!-- <a href="/news/" class="block {{ if eq .Section "news" }}text-slate-800 dark:text-white font-medium{{ else }}text-gray-600 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white{{ end }} transition">お知らせ</a> -->
-            <a href="/blog/" class="block {{ if eq .Section "blog" }}text-slate-800 dark:text-white font-medium{{ else }}text-gray-600 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white{{ end }} transition">ブログ</a>
-            <a href="/company/" class="block {{ if eq .Section "company" }}text-slate-800 dark:text-white font-medium{{ else }}text-gray-600 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white{{ end }} transition">会社概要</a>
+        <div id="mobile-menu" class="md:hidden absolute left-0 right-0 top-full bg-white dark:bg-transparent border-b border-gray-200 dark:border-white/10 transition-all duration-300 overflow-hidden max-h-0 opacity-0 pointer-events-none">
+            <div class="px-6 py-4 space-y-4">
+                <a href="/" class="block {{ if eq .RelPermalink "/" }}text-slate-800 dark:text-white font-medium{{ else }}text-gray-600 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white{{ end }} transition">ホーム</a>
+                <a href="/business/" class="block {{ if eq .Section "business" }}text-slate-800 dark:text-white font-medium{{ else }}text-gray-600 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white{{ end }} transition">事業内容</a>
+                <!-- <a href="/news/" class="block {{ if eq .Section "news" }}text-slate-800 dark:text-white font-medium{{ else }}text-gray-600 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white{{ end }} transition">お知らせ</a> -->
+                <a href="/blog/" class="block {{ if eq .Section "blog" }}text-slate-800 dark:text-white font-medium{{ else }}text-gray-600 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white{{ end }} transition">ブログ</a>
+                <a href="/company/" class="block {{ if eq .Section "company" }}text-slate-800 dark:text-white font-medium{{ else }}text-gray-600 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white{{ end }} transition">会社概要</a>
+            </div>
         </div>
     </nav>
 </header>
