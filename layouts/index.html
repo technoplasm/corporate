@@ -53,7 +53,7 @@
                 var positions = ['center 20%', 'center 50%', 'center 80%'];
                 var idx = Math.floor(Math.random() * gifs.length);
                 var els = document.querySelectorAll('.gif-text');
-                var timer = setInterval(next, 7000);
+                var timer = setInterval(next, 10000);
                 function applyGif() {
                     var pos = positions[Math.floor(Math.random() * positions.length)];
                     for (var i = 0; i < els.length; i++) {
@@ -68,7 +68,7 @@
                 function clickNext() {
                     clearInterval(timer);
                     next();
-                    timer = setInterval(next, 7000);
+                    timer = setInterval(next, 10000);
                 }
                 applyGif();
                 for (var i = 0; i < els.length; i++) {
