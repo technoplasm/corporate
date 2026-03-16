@@ -6,10 +6,13 @@
     "wrangler": "wrangler"
   },
   "dependencies": {
+    "@swup/head-plugin": "^2.3.1",
+    "@swup/scripts-plugin": "^2.1.0",
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.32",
     "postcss-cli": "^11.0.0",
+    "swup": "^4.8.3",
     "tailwindcss": "^3.4.0",
     "wrangler": "^4.45.0"
   }

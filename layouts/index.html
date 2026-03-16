@@ -26,7 +26,7 @@
                 <span class="text-white">その身体は</span><span class="gif-text text-2xl sm:text-3xl md:text-4xl">テクノロジー</span><span class="text-white">で出来ている</span>
             </p>
         </div>
-        <script>
+        <script data-swup-reload-script>
             (function() {
                 var gifs = [
                     // 'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGliYmcxOWltOHRuZmR2aXdyd3Rsc2V0b3h6aThjMTIzbGU5MmRobCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RinDK3M9VVPclvxfKo/giphy.gif)',
@@ -75,6 +75,12 @@
                     els[i].style.cursor = 'pointer';
                     els[i].addEventListener('click', clickNext);
                 }
+                window.__pageCleanup = function() {
+                    clearInterval(timer);
+                    for (var i = 0; i < els.length; i++) {
+                        els[i].removeEventListener('click', clickNext);
+                    }
+                };
             })();
         </script>
     </div>

@@ -87,7 +87,8 @@
     </style>
     {{ block "head" . }}{{ end }}
 </head>
-<body class="bg-black text-gray-100 flex flex-col min-h-screen">
+<body class="bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-500 flex flex-col min-h-screen"
+      data-theme="{{ if .IsHome }}dark{{ else }}light{{ end }}">
     <div class="gradient-overlay"></div>
     <div class="particles" id="particles"></div>
     <script>
@@ -131,9 +132,12 @@
         })();
     </script>
     {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
-    <main class="flex-grow flex flex-col relative z-10">
+    <main class="flex-grow flex flex-col relative z-10 transition-fade">
         {{ block "main" . }}{{ end }}
     </main>
     {{ block "footer" . }}{{ partial "footer.html" . }}{{ end }}
+    {{ $js := resources.Get "js/app.js" | js.Build }}
+    {{ if hugo.IsProduction }}{{ $js = $js | fingerprint }}{{ end }}
+    <script src="{{ $js.RelPermalink }}" type="module" data-swup-ignore-script></script>
 </body>
 </html>
