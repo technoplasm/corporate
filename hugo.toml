@@ -4,6 +4,7 @@ title = '株式会社テクノプラズム'
 
 [params]
   description = 'テクノロジーで医療現場を支援する株式会社テクノプラズムのウェブサイトです'
+  contact_form_url = 'https://docs.google.com/forms/d/e/1FAIpQLScjpJUQQ6DkFFVRHm4Y06NHTlmw86Ggy6O2FkIiAI6g6moZQw/viewform?embedded=true'
 
 [permalinks]
   blog = '/blog/:contentbasename/'

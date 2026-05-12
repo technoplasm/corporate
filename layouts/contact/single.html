@@ -1,0 +1,15 @@
+{{ define "main" }}
+
+<div class="py-16 bg-gray-100 dark:bg-white/5">
+    <div class="max-w-4xl mx-auto px-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100">{{ .Title }}</h1>
+    </div>
+</div>
+
+<section class="max-w-4xl mx-auto py-16 px-6">
+    <div class="flex justify-center">
+        <iframe src="{{ .Site.Params.contact_form_url }}" width="640" height="1400" frameborder="0" marginheight="0" marginwidth="0" class="max-w-full">読み込んでいます…</iframe>
+    </div>
+</section>
+
+{{ end }}
