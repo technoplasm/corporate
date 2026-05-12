@@ -52,13 +52,61 @@
                 var positions = ['center 20%', 'center 50%', 'center 80%'];
                 var idx = Math.floor(Math.random() * gifs.length);
                 var els = document.querySelectorAll('.gif-text');
+                var overlays = [];
+                var FADE_MS = 600;
+                for (var i = 0; i < els.length; i++) {
+                    var el = els[i];
+                    if (window.getComputedStyle(el).display === 'inline') {
+                        el.style.display = 'inline-block';
+                        el.style.verticalAlign = 'baseline';
+                    }
+                    el.style.position = 'relative';
+                    var ov = el.cloneNode(true);
+                    ov.setAttribute('aria-hidden', 'true');
+                    ov.style.position = 'absolute';
+                    ov.style.top = '0';
+                    ov.style.left = '0';
+                    ov.style.margin = '0';
+                    ov.style.opacity = '0';
+                    ov.style.transition = 'opacity ' + FADE_MS + 'ms ease';
+                    ov.style.pointerEvents = 'none';
+                    ov.style.backgroundImage = 'none';
+                    el.appendChild(ov);
+                    overlays.push(ov);
+                }
+                var pendingSwap = null;
+                var isFirst = true;
                 var timer = setInterval(next, 10000);
                 function applyGif() {
                     var pos = positions[Math.floor(Math.random() * positions.length)];
-                    for (var i = 0; i < els.length; i++) {
-                        els[i].style.backgroundImage = gifs[idx];
-                        els[i].style.backgroundPosition = pos;
+                    if (isFirst) {
+                        isFirst = false;
+                        for (var i = 0; i < els.length; i++) {
+                            els[i].style.backgroundImage = gifs[idx];
+                            els[i].style.backgroundPosition = pos;
+                        }
+                        return;
                     }
+                    if (pendingSwap) {
+                        clearTimeout(pendingSwap);
+                        pendingSwap = null;
+                    }
+                    for (var i = 0; i < els.length; i++) {
+                        overlays[i].style.backgroundImage = gifs[idx];
+                        overlays[i].style.backgroundPosition = pos;
+                        void overlays[i].offsetWidth;
+                        overlays[i].style.opacity = '1';
+                    }
+                    var capturedIdx = idx;
+                    var capturedPos = pos;
+                    pendingSwap = setTimeout(function() {
+                        pendingSwap = null;
+                        for (var i = 0; i < els.length; i++) {
+                            els[i].style.backgroundImage = gifs[capturedIdx];
+                            els[i].style.backgroundPosition = capturedPos;
+                            overlays[i].style.opacity = '0';
+                        }
+                    }, FADE_MS);
                 }
                 function next() {
                     idx = (idx + 1) % gifs.length;
@@ -76,6 +124,7 @@
                 }
                 window.__pageCleanup = function() {
                     clearInterval(timer);
+                    if (pendingSwap) clearTimeout(pendingSwap);
                     for (var i = 0; i < els.length; i++) {
                         els[i].removeEventListener('click', clickNext);
                     }

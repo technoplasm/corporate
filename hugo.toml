@@ -1,5 +1,5 @@
 baseURL = 'https://technoplasm.jp/'
-languageCode = 'ja'
+locale = 'ja'
 title = '株式会社テクノプラズム'
 
 [params]
