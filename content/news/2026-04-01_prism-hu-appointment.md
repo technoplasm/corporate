@@ -1,5 +1,5 @@
 ---
-title: "代表が北海道大学 PRISM-HU の特任助教に就任しました"
+title: "代表が北海道大学の特任助教に就任しました"
 date: 2026-04-01
 slug: "prism-hu-appointment"
 blog: "/blog/2026-04-01_prism-hu-appointment/"
