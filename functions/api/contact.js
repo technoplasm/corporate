@@ -68,6 +68,8 @@ JSON だけを出力してください: {"verdict": "spam" | "not_spam" | "unkno
 
 // Gmail フィルタで拾う印（社内通知の本文 1 行目）。日本語より ASCII の方が検索が確実
 const SALES_MARKER = '[sales-suspect]';
+// 入力に印と同じ語があると Gmail フィルタが誤爆するので、入力側からは消しておく
+const stripMarker = (value) => value.replace(/sales[\s_\-]*suspect/gi, '');
 
 const EMAIL_RE = /^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/;
 
@@ -206,11 +208,11 @@ export async function onRequestPost({ request, env }) {
     }
 
     const data = {
-        kind: oneLine(field(form, 'kind')),
-        name: oneLine(field(form, 'name')),
-        org: oneLine(field(form, 'org')),
+        kind: stripMarker(oneLine(field(form, 'kind'))),
+        name: stripMarker(oneLine(field(form, 'name'))),
+        org: stripMarker(oneLine(field(form, 'org'))),
         email: oneLine(field(form, 'email')),
-        message: field(form, 'message'),
+        message: stripMarker(field(form, 'message')),
     };
     const tooLong = Object.entries(LIMITS).some(([key, max]) => data[key].length > max);
     if (!data.kind || !data.name || !data.message || !EMAIL_RE.test(data.email) || tooLong) {
