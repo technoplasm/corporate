@@ -4,7 +4,9 @@ title = '株式会社テクノプラズム'
 
 [params]
   description = 'テクノロジーで医療現場を支援する株式会社テクノプラズムのウェブサイトです'
-  contact_form_url = 'https://docs.google.com/forms/d/e/1FAIpQLScjpJUQQ6DkFFVRHm4Y06NHTlmw86Ggy6O2FkIiAI6g6moZQw/viewform?embedded=true'
+  contact_email = 'info@technoplasm.jp'
+  turnstile_site_key = '0x4AAAAAAFR7sWbtiIm2JjDc'
+  contact_kinds = ['製品・サービスについて', '共同研究・連携', '行政・公的機関から', '報道・取材', '採用', 'その他']
 
 [permalinks]
   blog = '/blog/:contentbasename/'

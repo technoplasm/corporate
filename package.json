@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "hugo server --buildDrafts --disableFastRender --noHTTPCache",
-    "wrangler": "wrangler"
+    "wrangler": "wrangler",
+    "postinstall": "ln -sf ../postcss-cli/index.js node_modules/.bin/postcss"
   },
   "dependencies": {
     "@swup/head-plugin": "^2.3.1",
@@ -15,6 +16,6 @@
     "postcss-cli": "^11.0.0",
     "swup": "^4.8.3",
     "tailwindcss": "^3.4.0",
-    "wrangler": "^4.45.0"
+    "wrangler": "^4.148.0"
   }
 }

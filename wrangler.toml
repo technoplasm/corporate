@@ -1,0 +1,17 @@
+# Cloudflare Pages（technoplasm-corporate）の設定。
+# このファイルがある間、Pages の bindings / vars はダッシュボードではなくここが正になる。
+# secret（TURNSTILE_SECRET_KEY）はここに書かず `wrangler pages secret put` で登録する。
+name = "technoplasm-corporate"
+pages_build_output_dir = "public"
+compatibility_date = "2025-10-01"
+
+# お問い合わせのメール送信（workers/contact-mailer）
+[[services]]
+binding = "MAILER"
+service = "technoplasm-contact-mailer"
+
+# お問い合わせの件数記録（functions/api/contact.js）
+[[analytics_engine_datasets]]
+binding = "CONTACT_AE"
+dataset = "technoplasm_contact"
+

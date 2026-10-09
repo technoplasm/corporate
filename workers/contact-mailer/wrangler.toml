@@ -1,0 +1,19 @@
+# お問い合わせフォームの通知メールだけを送る Worker（Cloudflare Email Sending）。
+# Pages Functions は send_email バインディングを持てないため分離している。
+# 公開 URL は持たない（workers_dev = false・routes 無し）。Pages から Service binding でのみ呼ばれる。
+# デプロイ: pnpm wrangler deploy -c workers/contact-mailer/wrangler.toml（手順は docs/contact-form.md）
+name = "technoplasm-contact-mailer"
+main = "src/index.js"
+compatibility_date = "2025-10-01"
+workers_dev = false
+preview_urls = false
+
+# 送信元・宛先を固定する（Pages 側から任意のアドレスへは送れない）
+[[send_email]]
+name = "EMAIL"
+allowed_sender_addresses = ["contact-form@technoplasm.jp"]
+allowed_destination_addresses = ["info@technoplasm.jp"]
+
+[vars]
+MAIL_FROM = "contact-form@technoplasm.jp"
+MAIL_TO = "info@technoplasm.jp"

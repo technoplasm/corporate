@@ -20,3 +20,7 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Wrangler (local secrets / state)
+.dev.vars
+.wrangler/

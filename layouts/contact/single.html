@@ -7,8 +7,70 @@
 </div>
 
 <section class="max-w-4xl mx-auto py-16 px-6">
-    <div class="flex justify-center">
-        <iframe src="{{ .Site.Params.contact_form_url }}" width="640" height="1400" frameborder="0" marginheight="0" marginwidth="0" class="max-w-full">読み込んでいます…</iframe>
+    <div class="max-w-2xl">
+        <div class="space-y-6 text-base leading-relaxed text-gray-600 dark:text-gray-300">
+            <p>製品・サービス、共同研究、取材などに関するお問い合わせは、以下のフォームからお送りください。内容を確認のうえ、担当者よりご連絡いたします。</p>
+            <div class="border-l-4 border-gray-300 dark:border-white/20 pl-4 space-y-1 text-sm">
+                <p class="font-bold text-gray-900 dark:text-gray-100">営業・勧誘・広告掲載・有料取材のご案内はお断りします。返信いたしません。</p>
+                <p>フォームが送信できない場合は、<a href="mailto:{{ .Site.Params.contact_email }}" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">{{ .Site.Params.contact_email }}</a> まで直接ご連絡ください。</p>
+            </div>
+        </div>
+
+        <form id="contact-form" action="/api/contact" method="post" class="mt-12 space-y-8" novalidate>
+            <div>
+                <label for="contact-kind" class="flex items-center gap-2 mb-2 font-medium text-gray-900 dark:text-gray-100">お問い合わせ種別 <span class="rounded bg-red-600 dark:bg-red-500 px-1.5 py-0.5 text-xs font-medium leading-none text-white">必須</span></label>
+                <select id="contact-kind" name="kind" required class="w-full rounded border border-gray-300 dark:border-white/20 bg-white dark:bg-white/5 px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-500/30 transition">
+                    <option value="">選択してください</option>
+                    {{ range $.Site.Params.contact_kinds }}
+                    <option value="{{ . }}">{{ . }}</option>
+                    {{ end }}
+                </select>
+            </div>
+
+            <div>
+                <label for="contact-name" class="flex items-center gap-2 mb-2 font-medium text-gray-900 dark:text-gray-100">お名前 <span class="rounded bg-red-600 dark:bg-red-500 px-1.5 py-0.5 text-xs font-medium leading-none text-white">必須</span></label>
+                <input id="contact-name" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="例）山田 太郎" class="w-full rounded border border-gray-300 dark:border-white/20 bg-white dark:bg-white/5 px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-500/30 transition">
+            </div>
+
+            <div>
+                <label for="contact-org" class="flex items-center gap-2 mb-2 font-medium text-gray-900 dark:text-gray-100">ご所属 <span class="rounded bg-gray-200 dark:bg-white/10 px-1.5 py-0.5 text-xs font-medium leading-none text-gray-600 dark:text-gray-300">任意</span></label>
+                <input id="contact-org" name="org" type="text" maxlength="200" autocomplete="organization" placeholder="例）〇〇株式会社、〇〇大学 〇〇研究室" class="w-full rounded border border-gray-300 dark:border-white/20 bg-white dark:bg-white/5 px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-500/30 transition">
+            </div>
+
+            <div>
+                <label for="contact-email" class="flex items-center gap-2 mb-2 font-medium text-gray-900 dark:text-gray-100">メールアドレス <span class="rounded bg-red-600 dark:bg-red-500 px-1.5 py-0.5 text-xs font-medium leading-none text-white">必須</span></label>
+                <input id="contact-email" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="例）name@example.com" class="w-full rounded border border-gray-300 dark:border-white/20 bg-white dark:bg-white/5 px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-500/30 transition">
+            </div>
+
+            <div>
+                <label for="contact-message" class="flex items-center gap-2 mb-2 font-medium text-gray-900 dark:text-gray-100">お問い合わせ内容 <span class="rounded bg-red-600 dark:bg-red-500 px-1.5 py-0.5 text-xs font-medium leading-none text-white">必須</span></label>
+                <textarea id="contact-message" name="message" required rows="8" maxlength="5000" class="w-full rounded border border-gray-300 dark:border-white/20 bg-white dark:bg-white/5 px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-500/30 transition"></textarea>
+            </div>
+
+            <!-- ハニーポット: 人間には見えない欄。埋まっていたらサーバー側で黙って破棄する -->
+            <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;">
+                <label for="contact-website">ウェブサイト（入力しないでください）</label>
+                <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <input type="hidden" name="elapsed" value="">
+
+            <div id="contact-turnstile" data-sitekey="{{ .Site.Params.turnstile_site_key }}"></div>
+
+            <div id="contact-error" role="alert" class="hidden rounded border border-red-300 dark:border-red-400/40 bg-red-50 dark:bg-red-400/10 px-4 py-3 text-sm text-red-800 dark:text-red-200">
+                <p id="contact-error-message" class="font-medium"></p>
+                <p class="mt-1">解決しない場合は <a href="mailto:{{ $.Site.Params.contact_email }}" class="underline">{{ $.Site.Params.contact_email }}</a> まで直接お送りください。</p>
+            </div>
+
+            <div class="space-y-6">
+                <p class="text-sm text-gray-600 dark:text-gray-300">送信いただいた内容は<a href="/privacy/" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">プライバシーポリシー</a>に従って取り扱います。</p>
+                <button type="submit" class="w-full sm:w-auto sm:min-w-[12rem] rounded bg-slate-800 dark:bg-white px-8 py-3 font-medium text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-gray-200 transition disabled:opacity-50 disabled:cursor-wait">送信する</button>
+            </div>
+        </form>
+
+        <div id="contact-done" role="status" tabindex="-1" class="hidden mt-12 rounded border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 px-6 py-10 text-center focus:outline-none">
+            <p class="text-xl font-bold text-gray-900 dark:text-gray-100">お問い合わせを受け付けました</p>
+            <p class="mt-3 text-gray-600 dark:text-gray-300">お問い合わせいただきありがとうございます。<br class="hidden sm:inline">内容を確認のうえ、担当者よりご連絡いたします。</p>
+        </div>
     </div>
 </section>
 
