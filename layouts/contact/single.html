@@ -12,7 +12,6 @@
             <p>製品・サービス、共同研究、取材などに関するお問い合わせは、以下のフォームからお送りください。内容を確認のうえ、担当者よりご連絡いたします。</p>
             <div class="border-l-4 border-gray-300 dark:border-white/20 pl-4 space-y-1 text-sm">
                 <p class="font-bold text-gray-900 dark:text-gray-100">営業・勧誘・広告掲載・有料取材のご案内はお断りします。返信いたしません。</p>
-                <p>フォームが送信できない場合は、<a href="mailto:{{ .Site.Params.contact_email }}" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">{{ .Site.Params.contact_email }}</a> まで直接ご連絡ください。</p>
             </div>
         </div>
 
@@ -58,7 +57,7 @@
 
             <div id="contact-error" role="alert" class="hidden rounded border border-red-300 dark:border-red-400/40 bg-red-50 dark:bg-red-400/10 px-4 py-3 text-sm text-red-800 dark:text-red-200">
                 <p id="contact-error-message" class="font-medium"></p>
-                <p class="mt-1">解決しない場合は <a href="mailto:{{ $.Site.Params.contact_email }}" class="underline">{{ $.Site.Params.contact_email }}</a> まで直接お送りください。</p>
+                <p class="mt-1">解決しない場合は、時間をおいて再度お試しください。</p>
             </div>
 
             <div class="space-y-6">

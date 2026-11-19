@@ -139,7 +139,7 @@ document.addEventListener('submit', async (e) => {
             done.focus();
             return;
         }
-        showContactError(data.message || '送信に失敗しました。時間をおいて再度お試しください。');
+        showContactError(data.message || '送信に失敗しました。');
     } catch {
         showContactError('送信に失敗しました。通信環境をご確認ください。');
     } finally {

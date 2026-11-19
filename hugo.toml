@@ -4,7 +4,6 @@ title = '株式会社テクノプラズム'
 
 [params]
   description = 'テクノロジーで医療現場を支援する株式会社テクノプラズムのウェブサイトです'
-  contact_email = 'info@technoplasm.jp'
   turnstile_site_key = '0x4AAAAAAFR7sWbtiIm2JjDc'
   contact_kinds = ['製品・サービスについて', '共同研究・連携', '行政・公的機関から', '報道・取材', '採用', 'その他']
 
