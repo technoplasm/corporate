@@ -16,6 +16,6 @@ binding = "CONTACT_AE"
 dataset = "technoplasm_contact"
 
 
-# お問い合わせの AI 判定（functions/api/contact.js、モデルは @cf/zai-org/glm-5.3-flash）
+# お問い合わせの AI 判定（functions/api/contact.js、モデルは @cf/thinkingmachines/inkling-2-small）
 [ai]
 binding = "AI"

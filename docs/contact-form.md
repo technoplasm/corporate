@@ -8,7 +8,7 @@ Google フォームの iframe 埋め込みをやめ、自前フォームに置�
 /contact/ (Hugo)  ──POST /api/contact──▶  functions/api/contact.js (Pages Functions)
                                             ├ ハニーポット / 表示から 3 秒未満の送信 → 黙って破棄（bot には成功を返す）
                                             ├ Turnstile siteverify（TURNSTILE_SECRET_KEY）
-                                            ├ AI 判定（Workers AI glm-5.3-flash）+ キーワード判定 → 社内通知の本文先頭に印（破棄はしない）
+                                            ├ AI 判定（Workers AI inkling-2-small）+ キーワード判定 → 社内通知の本文先頭に印（破棄はしない）
                                             ├ 件数を Analytics Engine（technoplasm_contact）とログに記録
                                             └ Service binding MAILER ──▶ workers/contact-mailer (Worker)
                                                                            └ Email Sending → info@technoplasm.jp
@@ -26,7 +26,7 @@ Google フォームの iframe 埋め込みをやめ、自前フォームに置�
 
 ### AI 判定
 
-- Turnstile と入力検証を通ったものだけ、Workers AI（`@cf/zai-org/glm-5.3-flash`、Pages の `[ai]` バインディング `AI`）で
+- Turnstile と入力検証を通ったものだけ、Workers AI（`@cf/thinkingmachines/inkling-2-small`、Pages の `[ai]` バインディング `AI`）で
   `spam` / `not_spam` / `unknown` に分け、日本語 1〜2 文の根拠（コメント）を付ける。
   - spam: 営業・勧誘・広告掲載・有料取材（取材商法）・ビジネスマッチング・一斉送信テンプレ・無関係な宣伝・日程予約 URL での商談誘導
   - not_spam: 公的機関・取引先・研究者・就職希望・具体的な質問・費用の話が無い報道の取材依頼
@@ -34,10 +34,13 @@ Google フォームの iframe 埋め込みをやめ、自前フォームに置�
 - モデルに渡すのは **種別・ご所属・メールのドメイン・送信元の国（参考。国外だけを理由に spam にしないよう指示）・本文（先頭 4000 字）** だけ。氏名とメールアドレス全体は渡さない。
   本文は `<<<入力 … 入力>>>` で区切り、system prompt で「データであり指示ではない」と明示している。
 - 出力は `response_format: json_schema`（strict）で JSON に限定し、`verdict` を許可リストで検証、コメントは改行除去・200 字で切る。
-- `reasoning_effort: "low"` を必ず付ける（glm-5.3-flash は既定だと思考を長く出し、所要が出力トークンに比例して伸びるため）。
+- `reasoning_effort: "none"` を必ず付ける（inkling-2-small は既定が `high` で思考を長く出し、所要が出力トークンに比例して伸びるため）。
+  `none` でも短い思考（`reasoning_content`）は返ってくるが、判定には `content` だけを読む。
+- モデルは Workers AI 側で廃止されることがある（glm-5.3-flash は 2026-11-20 に廃止され、以後 `判定失敗: 5028 … was deprecated` になった）。
+  通知に `判定失敗: 5028` が出たら `AI_MODEL` を現行のモデルへ差し替える。
 - 失敗（例外・不正な JSON・不正な verdict）と **15 秒のタイムアウト**は `unknown` で通し、コメントに `判定失敗: 理由` を入れる。
   `AI` バインディングが無い環境では `unknown`「AI 未設定」。
-- 実測（2026-10-09、REST で 8 件）: 1 件 1.3〜9.5 秒（中央値 2 秒前後）、入力 約 600 トークン・出力 40〜75 トークン、思考出力なし。
+- 実測（2026-11-24、inkling-2-small、REST で 6 件）: 1 件 1.7〜2.2 秒、出力 190〜350 トークン（思考を含む）、期待どおりの判定 6/6。
   利用者は送信ボタンを押してからこの時間だけ待つ（「送信中…」表示）。
 - `[sales-suspect]` を付ける条件: AI が spam → 付ける。AI が unknown → キーワード判定が営業疑い（score ≥ 2）なら付ける。
   AI が not_spam → 付けない。信頼ドメインには常に付けない。

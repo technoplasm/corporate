@@ -36,8 +36,8 @@ const WEAK_PATTERNS = [
 // 公的機関・大学のドメインは営業疑いにしない
 const TRUSTED_DOMAIN = /\.(go|lg|ac|ed)\.jp$/i;
 
-// AI 判定（Workers AI）。所要は出力トークンに比例するので思考は reasoning_effort: low で抑える
-const AI_MODEL = '@cf/zai-org/glm-5.3-flash';
+// AI 判定（Workers AI）。所要は出力トークンに比例するので思考は reasoning_effort: none で抑える
+const AI_MODEL = '@cf/thinkingmachines/inkling-2-small';
 const AI_TIMEOUT_MS = 15000;
 const AI_MAX_INPUT = 4000;
 const AI_MAX_COMMENT = 200;
@@ -161,7 +161,7 @@ async function classify(env, data, country) {
                 { role: 'user', content: input },
             ],
             response_format: { type: 'json_schema', json_schema: { name: 'contact_verdict', strict: true, schema: AI_SCHEMA } },
-            reasoning_effort: 'low',
+            reasoning_effort: 'none',
             temperature: 0,
             max_completion_tokens: 2048,
         }), AI_TIMEOUT_MS);
